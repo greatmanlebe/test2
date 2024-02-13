@@ -1,4 +1,7 @@
 <?php
+$database="$_POST[data]";
+
+
 function open($database) {
     $servername = "localhost"; 
     $username = "root";     
@@ -9,9 +12,7 @@ function open($database) {
         die("Connection failed: " . $conn->connect_error);
     }
     $tables = array();
-
-    
-    $query = "SHOW TABLES";
+ $query = "SHOW TABLES";
     $result = $conn->query($query);
 
     if ($result === false) {
@@ -22,16 +23,10 @@ function open($database) {
         $tables[] = $row[0];
     }
 
-    
-    $conn->close();
-
-    
+    $conn->close(); 
     return $tables;
 }
 
-
-
-$database = "your data base name";
 $tables = open($database);
 
 foreach ($tables as $table) {
